@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cities Weather</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md">
+
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="container-fluid collapse navbar-collapse" id="collapse_target">
+            <div class="navbar-header">
+                <a class= "navbar-header" id="Landing_Page" href="index.html">Home</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="navbar_item"><a href="#">UV</a></li>
+                <li class="navbar_item"><a href="#">Air Pollution</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <br>
+    
+    <!-- <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-8">
+                    <h1>Summary: Latitude vs. X</h1>
+                    <hr>
+                    <p> 
+                        <img class="Landing_img" src="Images/lat_vs_temp.png" alt="city latitude vs max temp"></p>
+                    <p class="Landing_text">The purpose of this project was to analyze how weather changes as you get closer
+                        to the equator. To accomplish this analysis, we first pulled data from the OpenWeatherMap
+                        API to assemble a dataset on over 500 cities.
+                    </p>
+                    <br>
+                    <p class="Landing_text">After assembling the dataset, we used Matplotlib to plot various aspects of weather
+                        vs. latitude. Factors we looked at included:temperature, cloudiness, wind speed, 
+                        and humidity. This site provides the source data and visualizations created as part
+                        of the analysis, as well as explanations and descriptions of any trends and correlations
+                         witnessed.
+                    </p>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                    <h3>Visualizations</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3 col-lg-6 Landing_img">
+                            <a href="temp.html"><img width=200 src="Images/lat_vs_temp.png"></a>
+                        </div>
+                        <div class="col-sm-3 col-lg-6 Landing_img">
+                            <a href="humidity.html"><img width=200 src="Images/lat_vs_humidity.png"></a>
+                        </div>
+                        <div class="col-sm-3 col-lg-6 Landing_img">
+                            <a href="cloudiness.html"><img width=200 src="Images/lat_vs_cloudiness.png"></a>
+                        </div>
+                        <div class="col-sm-3 col-lg-6 Landing_img">
+                            <a href="wind_speed.html"><img width=200 src="Images/lat_vs_wind.png"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div> -->
+
+    <!-- <div class="col-md-5">
+        <div id="bar"></div>
+    </div>
+    <div class="col-md-5">
+        <div id="line"></div>
+    </div>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+    <script src="static/js/config.js"></script>
+    <script src="static/js/logic.js"></script> -->
+
+    <p>{{ current[0].coord }}</p>
+
+</body>
+
+
+
+</html>

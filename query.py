@@ -22,7 +22,7 @@ mongo.db.city_weather_uv.drop()
 # use json to read a json file to get city name and country code that has population larger than 100,000
 with open("current.city.list.json",encoding="utf8") as jsonfile:
     json_data = json.load(jsonfile)
-print(f"The first response is {json.dumps(json_data[0], indent=2)}.")
+#print(f"The first response is {json.dumps(json_data[0], indent=2)}.")
 
 cities = []
 countrycodes = []

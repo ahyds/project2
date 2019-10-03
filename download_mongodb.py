@@ -9,13 +9,26 @@ app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/project_weather"
 mongo = PyMongo(app)
 
-# Find all records of data from the mongo database
-weather_current = mongo.db.city_weather_current.find()
+@app.route("/")
+def home():
+    weather_current = mongo.db.city_weather_current.find()
+    # for item in weather_current:
+    # #if bool(item['name']):
+    #     try:
+    #         print(item['name'])
+    #     except:
+    #         pass
+    return render_template("index.html", current = weather_current)
 
-for item in weather_current:
-    #if bool(item['name']):
-    try:
-        print(item['name'])
-    except:
-        pass
-    
+# Find all records of data from the mongo database
+# weather_current = mongo.db.city_weather_current.find()
+
+# for item in weather_current:
+#     #if bool(item['name']):
+#     try:
+#         print(item['name'])
+#     except:
+#         pass
+
+if __name__ == "__main__":
+    app.run(debug=True)
