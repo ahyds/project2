@@ -11,24 +11,21 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def home():
+    # Ani's advance version
+    # data = {
+    #     "weather_current": mongo.db.city_weather_current.find(),
+    #     "weather_forecast": mongo.db.weather_forecast.find()
+    # }
+    # return render_template("index.html", data = data)
+
+    # original version
     weather_current = mongo.db.city_weather_current.find()
-    # for item in weather_current:
-    # #if bool(item['name']):
-    #     try:
-    #         print(item['name'])
-    #     except:
-    #         pass
-    return render_template("index.html", current = weather_current)
+    weather_forecast = mongo.db.city_weather_forecast.find()
+    uv_current = mongo.db.city_weather_uv.find()
+    
+    return render_template("index.html", current = weather_current, forecast = weather_forecast,uv = uv_current)
 
-# Find all records of data from the mongo database
-# weather_current = mongo.db.city_weather_current.find()
 
-# for item in weather_current:
-#     #if bool(item['name']):
-#     try:
-#         print(item['name'])
-#     except:
-#         pass
 
 if __name__ == "__main__":
     app.run(debug=True)
