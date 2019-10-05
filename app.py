@@ -24,9 +24,6 @@ def home():
     # uv_current = mongo.db.city_weather_uv.find()
     
     return render_template("index.html", current = weather_current,forecast = weather_forecast)
-    # multiple return
-    #return render_template("uv.html", uv = uv_current)
-    #return render_template("current.html", current = weather_current)
 
 @app.route("/uv")
 def uvpage():
@@ -38,7 +35,6 @@ def uvpage():
 def currentpage():
     weather_current = mongo.db.city_weather_current.find()
     return render_template("current.html", current = weather_current)
-
 
 
 if __name__ == "__main__":
