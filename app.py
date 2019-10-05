@@ -21,9 +21,23 @@ def home():
     # original version
     weather_current = mongo.db.city_weather_current.find()
     weather_forecast = mongo.db.city_weather_forecast.find()
-    uv_current = mongo.db.city_weather_uv.find()
+    # uv_current = mongo.db.city_weather_uv.find()
     
-    return render_template("index.html", current = weather_current, forecast = weather_forecast,uv = uv_current)
+    return render_template("index.html", current = weather_current,forecast = weather_forecast)
+    # multiple return
+    #return render_template("uv.html", uv = uv_current)
+    #return render_template("current.html", current = weather_current)
+
+@app.route("/uv")
+def uvpage():
+    uv_current = mongo.db.city_weather_uv.find()
+    return render_template("uv.html", uv = uv_current)
+
+
+@app.route("/current")
+def currentpage():
+    weather_current = mongo.db.city_weather_current.find()
+    return render_template("current.html", current = weather_current)
 
 
 

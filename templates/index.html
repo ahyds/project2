@@ -24,7 +24,7 @@
 
         <div class="container-fluid collapse navbar-collapse" id="collapse_target">
             <div class="navbar-header">
-                <a class= "navbar-header" id="Landing_Page" href="index.html">Home</a>
+                <a class= "navbar-header" id="Landing_Page" href=#>Home</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li class="navbar_item"><a href="#">UV Forecast</a></li>
@@ -46,23 +46,28 @@
                 </div>
             </div>
         </div>
-        <div class = "row">
-            <div class = "col-md-6"></div>
+        <div class="row">
+            <div class="col-md-5">
+                <div id="gauge"></div>
+            </div>
+            <div class="col-md-5">
+                <div id="line"></div>
+            </div>
         </div>
     </div>
 
-    <!-- <div class="col-md-5">
-        <div id="gauge"></div>
-    </div>
-    <div class="col-md-5">
-        <div id="line"></div>
-    </div>
     
     
     <!-- JavaScript --> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
     <script src="static/js/config.js"></script>
-    <script src="static/js/logic.js"></script>
+    <!-- <script src="static/js/logic.js"></script>
+    <script>
+        var options = ""
+        for(var i = 0; i < current.length; i++) {
+            options += `<option value="${i}">`+ `${{ current.name }}` +"</option>";
+            document.getElementById("selDataset").innerHTML = options}
+    </script> -->
 
 </body>
 
