@@ -1,42 +1,8 @@
-// An array containing all of the information needed to create UV value markers
-// var cities = [
-//     {
-//       lat: 37.09,
-//       lon: 55.17,
-//       date:1570017600,
-//       value: 5.45
-//     },
-//     {
-//       lat: 33.89,
-//       lon: 48.18,
-//       date:1123534,
-//       value: 7.53
-//     },
-//     {
-//       lat: 20.11,
-//       lon: 35.23,
-//       date:1578983020,
-//       value: 2.12
-//     },
-//     {
-//       lat: 43.11,
-//       lon: 25.23,
-//       date:1578983020,
-//       value: 3.26
-//     },
-//     {
-//       lat: 13.11,
-//       lon: 45.23,
-//       date:1572343020,
-//       value: 1.26
-//     }
-// ];
-
 var queryURL = "http://127.0.0.1:5000/_uv_forecast.json";
 
 // Define a markerSize function that will give each city a different radius based on its UV value
 function markerSize(UVvalue) {
-  return UVvalue*100000;
+  return UVvalue*30000;
 };
 
 d3.json(queryURL, function(data) {
@@ -47,7 +13,7 @@ d3.json(queryURL, function(data) {
 
   // Loop through locations and create high_UV and low_UV markers
   for (var i = 0; i < data.length; i++) {
-  // Setting the marker radius for the state by passing UV values into the markerSize function
+    // Setting the marker radius for the state by passing UV values into the markerSize function
     if (data[i].value >=5) {
       UVhigh.push(
         L.circle([data[i].lat,data[i].lon], {
@@ -58,7 +24,7 @@ d3.json(queryURL, function(data) {
         })
         .bindPopup("<h1>UV value: " + data[i].value + "</h1>")
     )}
-    else{
+    else {
       UVlow.push(
         L.circle([data[i].lat,data[i].lon], {
           fillOpacity: 0.75,
@@ -67,9 +33,10 @@ d3.json(queryURL, function(data) {
           radius: markerSize(data[i].value)
         })
         .bindPopup("<h1>UV value: " + data[i].value + "</h1>")
-    )}
+    )}}
 
-  console.log(UVlow);
+  console.log(UVlow)
+  console.log(UVhigh);
 
   // Define variables for our base layers
   var globalmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
@@ -110,5 +77,4 @@ d3.json(queryURL, function(data) {
   // L.circle//(cities[i].lat,cities[i].lon)
   // .bindPopup("<h1>" + cities[i].value + "</h1>")
   // .addTo(myMap);
-  }
   });
