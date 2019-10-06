@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
-
+from bson.json_util import dumps
 
 # Create an instance of Flask
 app = Flask(__name__)
@@ -21,20 +21,32 @@ def home():
     # original version
     weather_current = mongo.db.city_weather_current.find()
     weather_forecast = mongo.db.city_weather_forecast.find()
-    # uv_current = mongo.db.city_weather_uv.find()
-    
     return render_template("index.html", current = weather_current,forecast = weather_forecast)
 
 @app.route("/uv")
 def uvpage():
-    uv_current = mongo.db.city_weather_uv.find()
-    return render_template("uv.html", uv = uv_current)
-
+    uv_forecast = mongo.db.city_weather_uv.find()
+    return render_template("uv.html", uv = uv_forecast)
 
 @app.route("/current")
 def currentpage():
     weather_current = mongo.db.city_weather_current.find()
     return render_template("current.html", current = weather_current)
+
+@app.route("/_current_data.json")
+def weathercurrent():
+    weather_current_json = mongo.db.city_weather_current.find()
+    return dumps(weather_current_json)
+
+@app.route("/_uv_forecast.json")
+def uvforecast():
+    uv_forecast_json = mongo.db.city_weather_uv.find()
+    return dumps(uv_forecast_json)
+
+@app.route("/_forecast_data.json")
+def weatherforecast():
+    weather_forecast_json = mongo.db.city_weather_forecast.find()
+    return dumps(weather_forecast_json)
 
 
 if __name__ == "__main__":

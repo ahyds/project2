@@ -15,6 +15,13 @@
   
     <link rel="stylesheet" href="{{ url_for('static',filename='reset.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
+
+    <!-- <script type="text/javascript">
+        var temp = {{ current[0].main.temp }};
+        var wind = {{ current[0].wind.speed }};
+    </script>
+    <script type="text/javascript" src="app.js"></script> -->
+
 </head>
 
 <body>
@@ -37,25 +44,18 @@
     </nav>
 
     <hr>
-
     <br>
 
-    
-    
+    <div class="col-md-12">
+        <div id="bar"></div>
+    </div>
+
     <!-- JavaScript --> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
     <script src="static/js/config.js"></script>
     <script src="static/js/logic.js"></script>
 
-    <!-- <script>
-        var options = ""
-        for(var i = 0; i < current.length; i++) {
-            options += `<option value="${i}">`+ `${{ current.name }}` +"</option>";
-            document.getElementById("selDataset").innerHTML = options}
-    </script> -->
-
 </body>
-
 
 
 </html>
