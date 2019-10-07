@@ -28,7 +28,7 @@ cities = []
 countrycodes = []
 for item in json_data:
     try:
-        if item['stat']['population'] >= 100000: #there are 4011 cities around the world has more than 100,000 residents
+        if item['stat']['population'] >= 200000: #there are 1959 cities around the world has more than 200,000 residents
             cities.append(item['name'])
             countrycodes.append(item['country'])
     except:
@@ -43,7 +43,7 @@ units = "metric"
 cityfound = 0
 citynotfound = 0
 
-for x in range(20):
+for x in range(100):
     
     city = cities[x]
     countrycode = countrycodes[x]
