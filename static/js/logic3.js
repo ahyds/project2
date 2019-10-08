@@ -9,7 +9,7 @@ var citynames = [];
 
 d3.json(queryURL, function(data) {
     data.forEach(city => {
-        console.log(city.name);
+        //console.log(city.name);
         citynames.push(city.name);
     })
     
@@ -17,11 +17,11 @@ d3.json(queryURL, function(data) {
     // sampleids = data.name;
     // //console.log(sampleids);
     citynames.forEach(city => top10list.append("option").text(city));
-  
+    
 });
 
-
-
+//top10list.append('a').classed('dropdown-item', true).text('Shanghai')
+//top10list.append('a').classed('dropdown-item', true).text('Delhi')
 //function windchart(speed,degree){
 
     //var winddegree = 120;
@@ -36,6 +36,8 @@ d3.json(queryURL, function(data) {
   gaugeWind.startAngle(0)
         .sweepAngle(360)
         .fill('lavender');
+  
+  
 
   var axisWind = gaugeWind.axis()
         .radius(95)
@@ -45,6 +47,7 @@ d3.json(queryURL, function(data) {
         .maximum(360)
         .ticks({interval: 30,fontColor:'royalblue'})
         .minorTicks({interval: 10,fontColor:'royalblue'});
+
 
   axisWind.minorTicks()
         .enabled(true);
@@ -62,14 +65,14 @@ d3.json(queryURL, function(data) {
 
     //gauge label
   gaugeWind.label()
-        .text(50)
+        .text( 50 + "\n m/s" )
         .anchor('center') //set the position of the label
         .adjustFontSize(true)
         .hAlign('center')
-        .offsetY('-20%')
+        .offsetY('0%')
         .offsetX('50%')
         .width('80%')
-        .height('10%')
+        .height('35%')
         .fontColor('royalblue')
         .zIndex(10);
     // draw chart
@@ -98,8 +101,8 @@ var axisTemp = gaugeTemp.axis()
 axisTemp.scale()
       .minimum(-10)
       .maximum(50)
-      .ticks({interval: 30,fontColor:'royalblue'})
-      .minorTicks({interval: 10,fontColor:'royalblue'});
+      .ticks({interval: 5,fontColor:'royalblue'})
+      .minorTicks({interval: 1,fontColor:'royalblue'});
 
 axisTemp.minorTicks()
       .enabled(true);
@@ -117,14 +120,14 @@ gaugeTemp.needle(0)
 
 //gauge label
 gaugeTemp.label()
-      .text(90)
+      .text(90 + "\xB0C")
       .anchor('center') //set the position of the label
       .adjustFontSize(true)
       .hAlign('center')
-      .offsetY('-20%')
+      .offsetY('0%')
       .offsetX('50%')
       .width('80%')
-      .height('10%')
+      .height('20%')
       .fontColor('royalblue')
       .zIndex(10);
 
@@ -150,8 +153,8 @@ var axisHumid = gaugeHumid.axis()
 axisHumid.scale()
       .minimum(0)
       .maximum(100)
-      .ticks({interval: 30,fontColor:'royalblue'})
-      .minorTicks({interval: 10,fontColor:'royalblue'});
+      .ticks({interval: 10,fontColor:'royalblue'})
+      .minorTicks({interval: 1,fontColor:'royalblue'});
 
 axisHumid.minorTicks()
       .enabled(true);
@@ -170,14 +173,14 @@ gaugeHumid.needle(0)
   //gauge label
 
 gaugeHumid.label()
-      .text(40)
+      .text(40+"%")
       .anchor('center') //set the position of the label
       .adjustFontSize(true)
       .hAlign('center')
-      .offsetY('-20%')
+      .offsetY('0%')
       .offsetX('50%')
-      .width('80%')
-      .height('10%')
+      .width('50%')
+      .height('20%')
       .fontColor('royalblue')
       .zIndex(10);
   // draw chart
@@ -189,8 +192,7 @@ var weatherOfThisCity = {};
 // change the plot based on the select sample id
 top10list.on("change", function() {
     //save the chosen id to var sampleid
-    //gauge.dispose(); 
-    //gauge = null;
+   
     citySelected = d3.event.target.value;
     console.log(citySelected);
 
@@ -202,15 +204,15 @@ top10list.on("change", function() {
     //link the data with the gauge
         gaugeWind.data([weatherOfThisCity[0].wind.deg]);
         gaugeWind.label()
-        .text(weatherOfThisCity[0].wind.speed)
+        .text(weatherOfThisCity[0].wind.speed + "\n m/s")
 
         gaugeTemp.data([weatherOfThisCity[0].main.temp]);
         gaugeTemp.label()
-        .text(weatherOfThisCity[0].main.temp)
+        .text(parseInt(weatherOfThisCity[0].main.temp)+ "\xB0C")
 
         gaugeHumid.data([weatherOfThisCity[0].main.humidity]);
         gaugeHumid.label()
-        .text(weatherOfThisCity[0].main.humidity)
+        .text(weatherOfThisCity[0].main.humidity +"%")
         //windchart(weatherOfThisCity[0].wind.speed,weatherOfThisCity[0].wind.deg);
         console.log(weatherOfThisCity);
     });

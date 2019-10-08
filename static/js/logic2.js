@@ -24,7 +24,7 @@ d3.json(queryURL, function(data) {
           fillColor: "purple",
           radius: markerSize(data[i].value)
         })
-        .bindPopup("<h1>UV value: " + data[i].value + "</h1>")
+        .bindPopup("<h2> " + data[i].name + "</h2> <hr> <h3>UV value: " + data[i].value + "</h3>")
     )}
     else if (data[i].value < 5){
       UVlow.push(
@@ -35,7 +35,7 @@ d3.json(queryURL, function(data) {
           fillColor: "yellow",
           radius: markerSize(data[i].value)
         })
-        .bindPopup("<h1>UV value: " + data[i].value + "</h1>")
+        .bindPopup("<h2> " + data[i].name + "</h2> <hr> <h3>UV value: " + data[i].value + "</h3>")
     )}
     else {
       UVmid.push(
@@ -46,7 +46,7 @@ d3.json(queryURL, function(data) {
           fillColor: "coral",
           radius: markerSize(data[i].value)
         })
-        .bindPopup("<h1>UV value: " + data[i].value + "</h1>")
+        .bindPopup("<h2> " + data[i].name + "</h2> <hr> <h3>UV value: " + data[i].value + "</h3>")
     )}}
 
   console.log(UVlow);
@@ -56,14 +56,16 @@ d3.json(queryURL, function(data) {
   // Define variables for our base layers
   var globalmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-    maxZoom: 18,
+    maxZoom: 5,
+    minZoom: 2,
     id: "mapbox.streets-basic",
     accessToken: API_KEY
   });
 
   var satellitemap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-    maxZoom: 18,
+    maxZoom: 5,
+    minZoom: 2,
     id: "mapbox.satellite",
     accessToken: API_KEY
   });

@@ -38,44 +38,58 @@
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li class="navbar_item"><a href="/">Cities Forecast</a></li>
-                <li class="navbar_item"><a href="/uv">UV Forecast</a></li>
+                <li class="navbar_item"><a href="/uv">Current UV Index</a></li>
                 <li class="navbar_item"><a href="/current">Current Weather</a></li>
             </ul>
         </div>
     </nav>
-
+    
     <br>
     <br>
-
-    <div class="container" style="background-color: white;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>5 Day City Forecast</h3>
-                </div>
+    <div class = 'container' style="background-color:white;height:1200px;opacity:0.8;width:100%;align-self: center;padding:10px;margin-top: 30px;padding: 30px;opacity:0.7">
+            <div style="margin-left: 10px">
+                <h2>About the Project</h2>
+                <p>In this project, we choose to grab json format, weather data of random various cities/locations from OpenWeather using API, to create weather data from multiple facets across the globe. </p>
+                <br>
+                <p>The visualization includes a Python Flask–powered RESTful API, HTML/CSS, JavaScript, and a database (MongoDB).</p>
+                <hr>
+                <br>
+                <h2>Data Sources</h2>
+                <p>https://openweathermap.org/api</p>
+                <hr>
+                <br>
+                <h2>Contents</h2>
+                <p>The data contains the real-time weather information in the following three aspects.</p>
+                <br>
+                <h3>Current UV Index</h3>
+                <ul>
+                    <li>Accessed current UV data for over 500 cities using API.</li>
+                    <li>Created a graduated circle map using Leaflet circle vector layers.</li>
+                    <li>Filtered the data into three groups based on the UV value and created a layer control in the top-right corner which can toggle the marker on and off.</li>
+                    <li>Created a marker for each city with a pop-up that displayed the city’s UV value.</li>
+                </ul>
+                <br>
+                <h3>Current Weather</h3>
+                <ul>
+                    <li>Created a dashboard page with multiple charts that update from the same data.</li>
+                    <li>Included some level of user-driven interaction, such as dropdowns.</li>
+                    <li>Used library “Anychart” to plot 3 gauge charts.</li>
+                    <li>Created a dropdown for users to select the city they are interested.</li>
+                    <li>Based on the city selected, 3 gauge charts show the temperature, wind and humidity data respectively.</li>
+                </ul>
+                <br>
+                <h3>Cities Forecast</h3>
+                <ul>
+                    <li>111</li>
+                    <li>222</li>
+                    <li>333</li>
+                    <li>444</li>
+                </ul>
+                <hr>
+                <br>
             </div>
         </div>
 
-        <br>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2">
-                    <div class="dropdown show">
-                        <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Choose a City
-                        </a> 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-10">
-                    <div id="bar"></div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- JavaScript --> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>

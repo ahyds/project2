@@ -47,7 +47,7 @@ units = "metric"
 cityfound = 0
 citynotfound = 0
 
-for x in range(1000):
+for x in range(10):
     
     city = cities[x]
     countrycode = countrycodes[x]
@@ -74,6 +74,7 @@ for x in range(1000):
         # query current UV data and upload to mongodb
         query_url = f"{url}uvi?appid={api_key}&units={units}&lat={lat}&lon={lon}"
         response = requests.get(query_url).json()
+        response['name'] = city
         time.sleep(1)
         mongo.db.city_weather_uv.insert_one(response)
         cityfound += 1
