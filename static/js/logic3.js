@@ -1,54 +1,170 @@
 //create data set on our data
-var winddegree = 120;
-dataSet = anychart.data.set([winddegree]);
+var queryURL = "http://127.0.0.1:5000/_current_data.json";
+var top10list = d3.select("#selDataset");
+var wind = d3.select('#gaugechartwind');
 
-//set the chart type
-gauge = anychart.gauges.circular();
+//var sampleid = "";
+//var sampleids = [];
+var citynames = [];
 
-//link the data with the gauge
-gauge.data(dataSet);
-//set the starting angle for the gauge
-gauge.startAngle(0)
-     .sweepAngle(360)
-     .fill('lavender');
+d3.json(queryURL, function(data) {
+    data.forEach(city => {
+        console.log(city.name);
+        citynames.push(city.name);
+    })
+    
+    console.log(citynames)
+    // sampleids = data.name;
+    // //console.log(sampleids);
+    citynames.forEach(city => top10list.append("option").text(city));
+  
+});
 
-var axis = gauge.axis()
-    .radius(95)
-    .width(1);
-axis.scale()
-    .minimum(0)
-    .maximum(360)
-    .ticks({interval: 30,fontColor:'royalblue'})
-    .minorTicks({interval: 10,fontColor:'royalblue'});
 
-axis.minorTicks()
-    .enabled(true);
 
-gauge.needle(0)
-    .enabled(true)
-    .startRadius('35%')
-    .endRadius('80%')
-    .middleRadius('45%')
-    .startWidth('0.1%')
-    .endWidth('0.1%')
-    .fill('gold')
-    .stroke('gold')
-    .middleWidth('2%');
+//function windchart(speed,degree){
 
-//gauge label
-var windspeed = 20;
-gauge.label()
-    .text(windspeed)
-    .anchor('center') //set the position of the label
-    .adjustFontSize(true)
-    .hAlign('center')
-    .offsetY('-20%')
-    .offsetX('50%')
-    .width('80%')
-    .height('10%')
-    .fontColor('royalblue')
-    .zIndex(10);
-// draw chart
-gauge.container('gaugechartwind').draw();
+    //var winddegree = 120;
+  dataSetWind = anychart.data.set([50]);
+
+    //set the chart type
+  gaugeWind = anychart.gauges.circular();
+
+    //link the data with the gauge
+  gaugeWind.data(dataSetWind);
+    //set the starting angle for the gauge
+  gaugeWind.startAngle(0)
+        .sweepAngle(360)
+        .fill('lavender');
+
+  var axisWind = gaugeWind.axis()
+        .radius(95)
+        .width(1);
+  axisWind.scale()
+        .minimum(0)
+        .maximum(360)
+        .ticks({interval: 30,fontColor:'royalblue'})
+        .minorTicks({interval: 10,fontColor:'royalblue'});
+
+  axisWind.minorTicks()
+        .enabled(true);
+
+  gaugeWind.needle(0)
+        .enabled(true)
+        .startRadius('35%')
+        .endRadius('80%')
+        .middleRadius('45%')
+        .startWidth('0.1%')
+        .endWidth('0.1%')
+        .fill('gold')
+        .stroke('gold')
+        .middleWidth('2%');
+
+    //gauge label
+  gaugeWind.label()
+        .text(50)
+        .anchor('center') //set the position of the label
+        .adjustFontSize(true)
+        .hAlign('center')
+        .offsetY('-20%')
+        .offsetX('50%')
+        .width('80%')
+        .height('10%')
+        .fontColor('royalblue')
+        .zIndex(10);
+    // draw chart
+  gaugeWind.container('gaugechartwind').draw();
+    
+//}
+
+//function tempchart(temp){
+
+  //var winddegree = 120;
+dataSetTemp = anychart.data.set([90]);
+
+  //set the chart type
+gaugeTemp = anychart.gauges.circular();
+
+  //link the data with the gauge
+gaugeTemp.data(dataSetTemp);
+  //set the starting angle for the gauge
+gaugeTemp.startAngle(0)
+      .sweepAngle(360)
+      .fill('lavender');
+
+var axisTemp = gaugeTemp.axis()
+      .radius(95)
+      .width(1);
+axisTemp.scale()
+      .minimum(-10)
+      .maximum(50)
+      .ticks({interval: 30,fontColor:'royalblue'})
+      .minorTicks({interval: 10,fontColor:'royalblue'});
+
+axisTemp.minorTicks()
+      .enabled(true);
+
+gaugeTemp.needle(0)
+      .enabled(true)
+      .startRadius('35%')
+      .endRadius('80%')
+      .middleRadius('45%')
+      .startWidth('0.1%')
+      .endWidth('0.1%')
+      .fill('gold')
+      .stroke('gold')
+      .middleWidth('2%');
+
+  //gauge label
+
+gaugeTemp.label()
+      .text(90)
+      .anchor('center') //set the position of the label
+      .adjustFontSize(true)
+      .hAlign('center')
+      .offsetY('-20%')
+      .offsetX('50%')
+      .width('80%')
+      .height('10%')
+      .fontColor('royalblue')
+      .zIndex(10);
+  // draw chart
+gaugeTemp.container('gaugecharttemp').draw();
+  
+//}
+var citySelected = '';
+var weatherOfThisCity = {};
+
+// change the plot based on the select sample id
+top10list.on("change", function() {
+    //save the chosen id to var sampleid
+    //gauge.dispose(); 
+    //gauge = null;
+    citySelected = d3.event.target.value;
+    console.log(citySelected);
+
+    d3.json(queryURL, function(data) {
+        weatherOfThisCity = data.filter(city => city.name === citySelected);
+        //gauge.dispose();
+        //dataSet = anychart.data.set([weatherOfThisCity[0].wind.deg]);
+
+    //link the data with the gauge
+        gaugeWind.data([weatherOfThisCity[0].wind.deg]);
+        gaugeWind.label()
+        .text(weatherOfThisCity[0].wind.speed)
+        gaugeTemp.data([weatherOfThisCity[0].main.temp]);
+        gaugeTemp.label()
+        .text(weatherOfThisCity[0].main.temp)
+        //windchart(weatherOfThisCity[0].wind.speed,weatherOfThisCity[0].wind.deg);
+        console.log(weatherOfThisCity);
+    });
+
+    //console.log(weatherOfThisCity);
+    //gauge.data([80]);
+    
+});
+
+//windchart(50,90);
+//tempchart(55);
 
 //fill() and stroke() or fontColor().
