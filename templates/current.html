@@ -42,27 +42,32 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2">
-                <div class="well">
-                    <h5>City:</h5>
-                    <select id="selDataset">
-                        <!-- use d3 to fill in options -->
-                    </select>
+                <div class="dropdown show">
+                    <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose a City
+                    </a> 
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                <h3><strong>Current Temperature</strong></h3>
-                <div id="gaugecharttemp"></div>
-            </div>
-            <div class="col-md-4">
-                <h3><strong>Current Wind Speed</strong></h3>
-                <div id="gaugechartwind"></div>
-            </div>
-            <div class="col-md-4">
-                <h3><strong>Current Humidity</strong></h3>
-                <div id="gaugecharthumid"></div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h3><strong>Current Temperature</strong></h3>
+                        <div id="gaugecharttemp"></div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h3><strong>Current Wind Speed</strong></h3>
+                        <div id="gaugechartwind"></div>
+                    </div>
+
+                    <div class="col-md-4"> 
+                        <h3><strong>Current Humidity</strong></h3>
+                        <div id="gaugecharthumid"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

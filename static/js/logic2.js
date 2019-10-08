@@ -9,14 +9,16 @@ d3.json(queryURL, function(data) {
   // Define arrays to hold created high_UV and low_UV markers
   console.log(data)
   var UVhigh = [];
+  var UVmid = [];
   var UVlow = [];
 
   // Loop through locations and create high_UV and low_UV markers
   for (var i = 0; i < data.length; i++) {
     // Setting the marker radius for the state by passing UV values into the markerSize function
-    if (data[i].value >=5) {
+    if (data[i].value >= 10) {
       UVhigh.push(
         L.circle([data[i].lat,data[i].lon], {
+          weight: 0.5,
           fillOpacity: 0.75,
           color: "white",
           fillColor: "purple",
@@ -24,18 +26,31 @@ d3.json(queryURL, function(data) {
         })
         .bindPopup("<h1>UV value: " + data[i].value + "</h1>")
     )}
-    else {
+    else if (data[i].value < 5){
       UVlow.push(
         L.circle([data[i].lat,data[i].lon], {
+          weight: 0.5,
           fillOpacity: 0.75,
           color: "white",
           fillColor: "yellow",
           radius: markerSize(data[i].value)
         })
         .bindPopup("<h1>UV value: " + data[i].value + "</h1>")
+    )}
+    else {
+      UVmid.push(
+        L.circle([data[i].lat,data[i].lon], {
+          weight: 0.5,
+          fillOpacity: 0.75,
+          color: "white",
+          fillColor: "coral",
+          radius: markerSize(data[i].value)
+        })
+        .bindPopup("<h1>UV value: " + data[i].value + "</h1>")
     )}}
 
-  console.log(UVlow)
+  console.log(UVlow);
+  console.log(UVmid);
   console.log(UVhigh);
 
   // Define variables for our base layers
@@ -48,6 +63,7 @@ d3.json(queryURL, function(data) {
 
   // Create two separate layer groups: one for high UV and one for low UV
   var high_UV = L.layerGroup(UVhigh);
+  var mid_UV=L.layerGroup(UVmid);
   var low_UV = L.layerGroup(UVlow);
 
   // Create a baseMaps object
@@ -57,7 +73,8 @@ d3.json(queryURL, function(data) {
   
   // Create an overlay object
   var overlayMaps = {
-    "UV value ≥ 5": high_UV,
+    "UV value ≥ 10": high_UV,
+    "5 ≤ UV value < 10": mid_UV,
     "UV value < 5": low_UV
   };
 
@@ -65,7 +82,7 @@ d3.json(queryURL, function(data) {
   var myMap = L.map("map", {
     center: [20, 10],
     zoom: 2.5,
-    layers: [globalmap, high_UV, low_UV]
+    layers: [globalmap, high_UV, mid_UV, low_UV]
   });
 
   // Pass our map layers into our layer control
