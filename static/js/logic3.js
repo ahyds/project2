@@ -115,8 +115,7 @@ gaugeTemp.needle(0)
       .stroke('gold')
       .middleWidth('2%');
 
-  //gauge label
-
+//gauge label
 gaugeTemp.label()
       .text(90)
       .anchor('center') //set the position of the label
@@ -128,9 +127,61 @@ gaugeTemp.label()
       .height('10%')
       .fontColor('royalblue')
       .zIndex(10);
-  // draw chart
+
+// draw chart
 gaugeTemp.container('gaugecharttemp').draw();
-  
+
+// draw the chart to show humidity
+dataSetHumid = anychart.data.set([40]);
+
+//set the chart type
+gaugeHumid = anychart.gauges.circular();
+
+//link the data with the gauge
+gaugeHumid.data(dataSetHumid);
+  //set the starting angle for the gauge
+gaugeHumid.startAngle(0)
+      .sweepAngle(360)
+      .fill('lavender');
+
+var axisHumid = gaugeHumid.axis()
+      .radius(95)
+      .width(1);
+axisHumid.scale()
+      .minimum(0)
+      .maximum(100)
+      .ticks({interval: 30,fontColor:'royalblue'})
+      .minorTicks({interval: 10,fontColor:'royalblue'});
+
+axisHumid.minorTicks()
+      .enabled(true);
+
+gaugeHumid.needle(0)
+      .enabled(true)
+      .startRadius('35%')
+      .endRadius('80%')
+      .middleRadius('45%')
+      .startWidth('0.1%')
+      .endWidth('0.1%')
+      .fill('gold')
+      .stroke('gold')
+      .middleWidth('2%');
+
+  //gauge label
+
+gaugeHumid.label()
+      .text(40)
+      .anchor('center') //set the position of the label
+      .adjustFontSize(true)
+      .hAlign('center')
+      .offsetY('-20%')
+      .offsetX('50%')
+      .width('80%')
+      .height('10%')
+      .fontColor('royalblue')
+      .zIndex(10);
+  // draw chart
+gaugeHumid.container('gaugecharthumid').draw();
 //}
 var citySelected = '';
 var weatherOfThisCity = {};
@@ -152,9 +203,14 @@ top10list.on("change", function() {
         gaugeWind.data([weatherOfThisCity[0].wind.deg]);
         gaugeWind.label()
         .text(weatherOfThisCity[0].wind.speed)
+
         gaugeTemp.data([weatherOfThisCity[0].main.temp]);
         gaugeTemp.label()
         .text(weatherOfThisCity[0].main.temp)
+
+        gaugeHumid.data([weatherOfThisCity[0].main.humidity]);
+        gaugeHumid.label()
+        .text(weatherOfThisCity[0].main.humidity)
         //windchart(weatherOfThisCity[0].wind.speed,weatherOfThisCity[0].wind.deg);
         console.log(weatherOfThisCity);
     });
