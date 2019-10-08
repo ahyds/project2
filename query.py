@@ -22,20 +22,24 @@ mongo.db.city_weather_uv.drop()
 # use json to read a json file to get city name and country code that has population larger than 100,000
 with open("current.city.list.json",encoding="utf8") as jsonfile:
     json_data = json.load(jsonfile)
-#print(f"The first response is {json.dumps(json_data[0], indent=2)}.")
+    #print(f"The first response is {json.dumps(json_data[0], indent=2)}.")
+
+# sort the data by population in descending order
+sorted_data = sorted(json_data, key = lambda i: i['stat']['population'],reverse=True)
 
 cities = []
 countrycodes = []
-for item in json_data:
+populations = []
+number_of_cities = 2000 
+
+
+for i in range(number_of_cities):
     try:
-        if item['stat']['population'] >= 100000: #there are 4011 cities around the world has more than 100,000 residents
-            cities.append(item['name'])
-            countrycodes.append(item['country'])
+        cities.append(sorted_data[i]['name'])
+        countrycodes.append(sorted_data[i]['country'])
+        populations.append(sorted_data[i]['stat']['population'])
     except:
         pass
-    
-print(len(cities))
-print(len(countrycodes))
 
 
 url = "http://api.openweathermap.org/data/2.5/"
@@ -43,7 +47,7 @@ units = "metric"
 cityfound = 0
 citynotfound = 0
 
-for x in range(20):
+for x in range(1000):
     
     city = cities[x]
     countrycode = countrycodes[x]
