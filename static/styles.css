@@ -25,14 +25,10 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.dropdown {
-    margin-top: 0px;
-}
-
 .btn{
-    color: rgb(119, 117, 117);
-    font-size: 20px;
+    font-size: 15px;
     margin-top: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .navbar-header{
@@ -41,10 +37,13 @@
 }
 
 #Landing_Page{
-    background-color: cadetblue;
+    background-color: #17a2b8;
     color: white;
     font-size: 35px;
-    padding: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .nav-link{
@@ -53,23 +52,37 @@
 }
 
 
-
 /* content styling */
 h1 {
-    color: cadetblue;
+    font-size: 50px;
+    color: #17a2b8;
     padding: 2px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 h2{
-    color:cadetblue;
+    font-size: 35px;
+    color:#17a2b8;
     padding: 2px;
-    text-align: center;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 h3{
-    color:cadetblue;
+    font-size: 30px;
+    color:#17a2b8;
+    text-align: left;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h5{
+    font-size: 20px;
+    color:#17a2b8;
     text-align: center;
     padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 img{
@@ -88,13 +101,5 @@ img{
 }
 
 
-@media (max-width: 480px) {
-    .navbar{
-        visibility: hidden;
-    }
 
-    .dropdown-menu{
-        visibility: visible;
-    }
 
-}

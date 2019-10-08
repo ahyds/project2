@@ -16,11 +16,11 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='reset.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
 
-    <!-- <script type="text/javascript">
-        var temp = {{ current[0].main.temp }};
-        var wind = {{ current[0].wind.speed }};
-    </script>
-    <script type="text/javascript" src="app.js"></script> -->
+    <style>
+        body {
+            background-image: url("{{ url_for('static',filename='images/background.jpg') }}");
+        }
+    </style>
 
 </head>
 
@@ -37,17 +37,44 @@
                 <a class= "navbar-header" id="Landing_Page" href="/">Home</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
+                <li class="navbar_item"><a href="/">Cities Forecast</a></li>
                 <li class="navbar_item"><a href="/uv">UV Forecast</a></li>
                 <li class="navbar_item"><a href="/current">Current Weather</a></li>
             </ul>
         </div>
     </nav>
 
-    <hr>
+    <br>
     <br>
 
-    <div class="col-md-12">
-        <div id="bar"></div>
+    <div class="container" style="background-color: white;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>5 Day City Forecast</h3>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="dropdown show">
+                        <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose a City
+                        </a> 
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-10">
+                    <div id="bar"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- JavaScript --> 

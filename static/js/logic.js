@@ -104,5 +104,3 @@
 // };
 
 
-console.log(wind);
-console.log(temp);

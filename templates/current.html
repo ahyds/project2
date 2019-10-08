@@ -15,6 +15,13 @@
 
     <link rel="stylesheet" href="{{ url_for('static',filename='reset.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
+
+    <style>
+        body {
+            background-image: url("{{ url_for('static',filename='images/background.jpg') }}");
+        }
+    </style>
+
 </head>
 
 <body>
@@ -30,42 +37,59 @@
                 <a class= "navbar-header" id="Landing_Page" href="/">Home</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
+                <li class="navbar_item"><a href="/">Cities Forecast</a></li>
                 <li class="navbar_item"><a href="/uv">UV Forecast</a></li>
                 <li class="navbar_item"><a href="/current">Current Weather</a></li>
             </ul>
         </div>
     </nav>
 
-    <hr>
+    <br>
     <br>
     
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2">
-                <div class="well">
-                    <h5>City:</h5>
-                    <select id="selDataset">
-                        <!-- use d3 to fill in options -->
-                    </select>
+    <div class="container" style="background-color: white;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Current Weather</h3>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                <h3><strong>Current Temperature</strong></h3>
-                <div id="gaugecharttemp"></div>
-            </div>
-            <div class="col-md-4">
-                <h3><strong>Current Wind Speed</strong></h3>
-                <div id="gaugechartwind"></div>
-            </div>
-            <div class="col-md-4">
-                <h3><strong>Current Humidity</strong></h3>
-                <div id="gaugecharthumid"></div>
+        <br>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="dropdown show">
+                        <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose a City
+                        </a> 
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="selDataset">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5><strong>Current Temperature</strong></h5>
+                            <div id="gaugecharttemp"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h5><strong>Current Wind Speed</strong></h5>
+                            <div id="gaugechartwind"></div>
+                        </div>
+
+                        <div class="col-md-4"> 
+                            <h5><strong>Current Humidity</strong></h5>
+                            <div id="gaugecharthumid"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
     <!-- JavaScript --> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
