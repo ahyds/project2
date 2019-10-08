@@ -61,6 +61,13 @@ d3.json(queryURL, function(data) {
     accessToken: API_KEY
   });
 
+  var satellitemap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+    attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+    maxZoom: 18,
+    id: "mapbox.satellite",
+    accessToken: API_KEY
+  });
+
   // Create two separate layer groups: one for high UV and one for low UV
   var high_UV = L.layerGroup(UVhigh);
   var mid_UV=L.layerGroup(UVmid);
@@ -68,7 +75,8 @@ d3.json(queryURL, function(data) {
 
   // Create a baseMaps object
   var baseMaps = {
-    "Map": globalmap
+    "Street": globalmap,
+    "Satellite": satellitemap
   };
   
   // Create an overlay object
@@ -91,7 +99,4 @@ d3.json(queryURL, function(data) {
     collapsed: false
   }).addTo(myMap);
 
-  // L.circle//(cities[i].lat,cities[i].lon)
-  // .bindPopup("<h1>" + cities[i].value + "</h1>")
-  // .addTo(myMap);
-  });
+});
