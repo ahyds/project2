@@ -24,7 +24,7 @@ d3.json(queryURL, function(data) {
           fillColor: "purple",
           radius: markerSize(data[i].value)
         })
-        .bindPopup("<h2> " + data[i].name + "</h2> <hr> <h3>UV value: " + data[i].value + "</h3>")
+        .bindPopup("<h5> " + data[i].name + "</h5> <hr> <h6>UV value: " + data[i].value + "</h6>")
     )}
     else if (data[i].value < 5){
       UVlow.push(
@@ -35,7 +35,7 @@ d3.json(queryURL, function(data) {
           fillColor: "yellow",
           radius: markerSize(data[i].value)
         })
-        .bindPopup("<h2> " + data[i].name + "</h2> <hr> <h3>UV value: " + data[i].value + "</h3>")
+        .bindPopup("<h5> " + data[i].name + "</h5> <hr> <h6>UV value: " + data[i].value + "</h6>")
     )}
     else {
       UVmid.push(
@@ -46,7 +46,7 @@ d3.json(queryURL, function(data) {
           fillColor: "coral",
           radius: markerSize(data[i].value)
         })
-        .bindPopup("<h2> " + data[i].name + "</h2> <hr> <h3>UV value: " + data[i].value + "</h3>")
+        .bindPopup("<h5> " + data[i].name + "</h5> <hr> <h6>UV value: " + data[i].value + "</h6>")
     )}}
 
   console.log(UVlow);

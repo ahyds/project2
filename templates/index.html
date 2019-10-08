@@ -37,7 +37,7 @@
                 <a class= "navbar-header" id="Landing_Page" href="/">Home</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li class="navbar_item"><a href="/">Cities Forecast</a></li>
+                <li class="navbar_item"><a href="/forecast">Cities Forecast</a></li>
                 <li class="navbar_item"><a href="/uv">Current UV Index</a></li>
                 <li class="navbar_item"><a href="/current">Current Weather</a></li>
             </ul>
@@ -51,11 +51,16 @@
                 <h2>About the Project</h2>
                 <p>In this project, we choose to grab json format, weather data of random various cities/locations from OpenWeather using API, to create weather data from multiple facets across the globe. </p>
                 <br>
-                <p>The visualization includes a Python Flask–powered RESTful API, HTML/CSS, JavaScript, and a database (MongoDB).</p>
+                <p>The visualization includes: </p>
+                <ul>
+                    <li>A Python Flask–powered RESTful API, HTML/CSS, JavaScript, and a database (MongoDB);</li>
+                    <li>A dashboard page with multiple charts that update from the same data;</li>
+                    <li>AnyChart JS Library <a style="margin-left:0px;" href=https://www.anychart.com target="_blank">(https://www.anychart.com)</a></li>
+                </ul>
                 <hr>
                 <br>
                 <h2>Data Sources</h2>
-                <p>https://openweathermap.org/api</p>
+                <a href="https://openweathermap.org/api">https://openweathermap.org/api</a>
                 <hr>
                 <br>
                 <h2>Contents</h2>
@@ -66,7 +71,7 @@
                     <li>Accessed current UV data for over 500 cities using API.</li>
                     <li>Created a graduated circle map using Leaflet circle vector layers.</li>
                     <li>Filtered the data into three groups based on the UV value and created a layer control in the top-right corner which can toggle the marker on and off.</li>
-                    <li>Created a marker for each city with a pop-up that displayed the city’s UV value.</li>
+                    <li>Created a marker for each city with a pop-up that displayed the city name and UV value.</li>
                 </ul>
                 <br>
                 <h3>Current Weather</h3>
