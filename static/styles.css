@@ -134,3 +134,14 @@ a{
     margin-left: 30px;
     font-size: 20px
 }
+
+.navbar_item:hover{
+    background-color:  #ceebf0;
+    opacity: 0.5;
+    font-weight: bold;
+    
+}
+
+/* .navbar li a:hover{
+    color:white;
+} */
