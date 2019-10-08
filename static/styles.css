@@ -124,3 +124,14 @@ h2{
     font-weight: bold;
     font-size: 250%;
 }
+
+.navbar_item:hover{
+    background-color:  #ceebf0;
+    opacity: 0.5;
+    font-weight: bold;
+    
+}
+
+/* .navbar li a:hover{
+    color:white;
+} */
