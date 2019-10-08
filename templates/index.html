@@ -16,6 +16,12 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='reset.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
 
+    <style>
+        body {
+            background-image: url("{{ url_for('static',filename='images/background.jpg') }}");
+        }
+    </style>
+
 </head>
 
 <body>
@@ -38,9 +44,10 @@
         </div>
     </nav>
 
-    <hr>
+    <br>
     <br>
 
+    <div class="container" style="background-color: aliceblue;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -51,7 +58,7 @@
 
     <br>
 
-    <div class="container">
+    <div class="container" style="background-color: aliceblue;">
         <div class="row">
             <div class="col-md-2">
                 <div class="dropdown show">
@@ -67,6 +74,7 @@
                 <div id="bar"></div>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- JavaScript --> 
