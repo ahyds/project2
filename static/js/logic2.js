@@ -91,8 +91,8 @@ d3.json(queryURL, function(data) {
   // Define a map object
   var myMap = L.map("map", {
     center: [20, 10],
-    zoom: 2.5,
-    layers: [globalmap, high_UV, mid_UV, low_UV]
+    zoom: 2,
+    layers: [satellitemap, high_UV, mid_UV, low_UV]
   });
 
   // Pass our map layers into our layer control
