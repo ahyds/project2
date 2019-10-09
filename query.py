@@ -47,7 +47,7 @@ units = "metric"
 cityfound = 0
 citynotfound = 0
 
-for x in range(10):
+for x in range(20):
     
     city = cities[x]
     countrycode = countrycodes[x]

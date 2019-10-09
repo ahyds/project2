@@ -11,14 +11,7 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def home():
-    # Ani's advance version
-    # data = {
-    #     "weather_current": mongo.db.city_weather_current.find(),
-    #     "weather_forecast": mongo.db.weather_forecast.find()
-    # }
-    # return render_template("index.html", data = data)
-
-    # original version
+   
     weather_current = mongo.db.city_weather_current.find()
     weather_forecast = mongo.db.city_weather_forecast.find()
     return render_template("index.html", current = weather_current,forecast = weather_forecast)

@@ -25,7 +25,7 @@ d3.json(queryURL, function(data) {
 //function windchart(speed,degree){
 
     //var winddegree = 120;
-  dataSetWind = anychart.data.set([50]);
+  dataSetWind = anychart.data.set([350]);
 
     //set the chart type
   gaugeWind = anychart.gauges.circular();
@@ -65,7 +65,7 @@ d3.json(queryURL, function(data) {
 
     //gauge label
   gaugeWind.label()
-        .text( 50 + "\n m/s" )
+        .text( 1 + "\n m/s" )
         .anchor('center') //set the position of the label
         .adjustFontSize(true)
         .hAlign('center')
@@ -83,7 +83,7 @@ d3.json(queryURL, function(data) {
 //function tempchart(temp){
 
   //var winddegree = 120;
-dataSetTemp = anychart.data.set([90]);
+dataSetTemp = anychart.data.set([17]);
 
   //set the chart type
 gaugeTemp = anychart.gauges.circular();
@@ -120,7 +120,7 @@ gaugeTemp.needle(0)
 
 //gauge label
 gaugeTemp.label()
-      .text(90 + "\xB0C")
+      .text(17 + "\xB0C")
       .anchor('center') //set the position of the label
       .adjustFontSize(true)
       .hAlign('center')
@@ -135,7 +135,7 @@ gaugeTemp.label()
 gaugeTemp.container('gaugecharttemp').draw();
 
 // draw the chart to show humidity
-dataSetHumid = anychart.data.set([40]);
+dataSetHumid = anychart.data.set([82]);
 
 //set the chart type
 gaugeHumid = anychart.gauges.circular();
@@ -173,7 +173,7 @@ gaugeHumid.needle(0)
   //gauge label
 
 gaugeHumid.label()
-      .text(40+"%")
+      .text(82+"%")
       .anchor('center') //set the position of the label
       .adjustFontSize(true)
       .hAlign('center')
