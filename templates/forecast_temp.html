@@ -11,7 +11,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
     <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-cartesian.min.js"></script>
     <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-circular-gauge.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-base.min.js"></script>
 
     <link rel="stylesheet" href="{{ url_for('static',filename='reset.css') }}">
     <link rel="stylesheet" href="{{ url_for('static',filename='styles.css') }}">
@@ -48,11 +50,11 @@
     <br>
     <br>
     
-    <div class="container" style="background-color: white;height:600px;opacity: 0.8;padding:10px">
+    <div class="container" style="background-color: white;height:650px;opacity: 0.8;padding:10px">
         <div class="container" style="background-color: #17a2b8;">
             <div class="row" >
                 <div class="col-md-12">
-                    <h3 id = "current_h3">Current Weather</h3>
+                    <h3 id = "current_h3">Temperature Forecast</h3>
                 </div>
             </div>
         </div>
@@ -89,6 +91,17 @@
 
                 <div class="col-md-10">
                     <div class="row">
+                            <div class="col-md-12">
+                                    <h5><strong>5-day Temperature Forecast</strong></h5>
+                                    <h5>(Every 3 hours)</h5>
+                                    <br>
+                                    <br>
+                                    <div id="rangecolumn" style= "height: 450px"></div>
+                                </div>
+
+                    </div>
+
+                    <!-- <div class="row">
                         <div class="col-md-4">
                             <h5><strong>Temperature</strong></h5>
                             <br>
@@ -108,7 +121,7 @@
                             <br>
                             <div id="gaugecharthumid" style= "height: 350px"></div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -116,7 +129,7 @@
     <!-- JavaScript --> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
     <script src="static/js/config.js"></script>
-    <script src="static/js/logic3.js"></script>
+    <script src="static/js/logic4.js"></script>
 
 </body>
 
