@@ -1,24 +1,46 @@
 //create data set on our data
 var queryURL = "http://127.0.0.1:5000/_current_data.json";
-var top10list = d3.select("#selDataset");
+var citylist = d3.select("#selDataset");
+var countrylist = d3.select("#selcountry");
+
 var wind = d3.select('#gaugechartwind');
 
 //var sampleid = "";
 //var sampleids = [];
 var citynames = [];
 
+// Add an empty option under country section
+countrylist.append("option");
+citylist.append("option");
+var countryAndcity = {};
+
 d3.json(queryURL, function(data) {
+    
+    var allcountry = data.map(record => record.sys.country);
+    var uniquecountry = [...new Set(allcountry)]; 
+    uniquecountry = uniquecountry.sort();
+    uniquecountry.forEach(country => countrylist.append("option").text(country));
+    console.log(uniquecountry);
+
+    
+
+    uniquecountry.forEach(function(country){
+    var citiesOfcountry = data.filter(record => record.sys.country === country);
+    var cityNamesByCountry = citiesOfcountry.map(record => record.name);
+    var uniquecity = [...new Set(cityNamesByCountry)]; 
+    countryAndcity[country] = uniquecity;
+    });
+    console.log(countryAndcity);
+  
     data.forEach(city => {
         //console.log(city.name);
         citynames.push(city.name);
     })
-    
-    console.log(citynames)
-    // sampleids = data.name;
-    // //console.log(sampleids);
-    citynames.forEach(city => top10list.append("option").text(city));
+
+    citynames.forEach(city => citylist.append("option").text(city));
     
 });
+
 
 //top10list.append('a').classed('dropdown-item', true).text('Shanghai')
 //top10list.append('a').classed('dropdown-item', true).text('Delhi')
@@ -185,12 +207,25 @@ gaugeHumid.label()
       .zIndex(10);
   // draw chart
 gaugeHumid.container('gaugecharthumid').draw();
-//}
+
+countrylist.on("change", function() {
+      countryselected = d3.event.target.value;
+      //console.log(country);
+      // if (!(country) ) {
+      //   state = "";
+      // }
+  
+      // based on the country chosen create the list of state to choose from
+      citylist.html("");
+      citylist.append("option")
+      countryAndcity[countryselected].forEach(city => citylist.append("option").text(city));
+    });
+
 var citySelected = '';
 var weatherOfThisCity = {};
 
 // change the plot based on the select sample id
-top10list.on("change", function() {
+citylist.on("change", function() {
     //save the chosen id to var sampleid
    
     citySelected = d3.event.target.value;
