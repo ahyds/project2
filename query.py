@@ -30,7 +30,7 @@ sorted_data = sorted(json_data, key = lambda i: i['stat']['population'],reverse=
 cities = []
 countrycodes = []
 populations = []
-number_of_cities = 2000 
+number_of_cities = 600 
 
 
 for i in range(number_of_cities):
@@ -47,7 +47,7 @@ units = "metric"
 cityfound = 0
 citynotfound = 0
 
-for x in range(20):
+for x in range(600):
     
     city = cities[x]
     countrycode = countrycodes[x]
