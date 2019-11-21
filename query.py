@@ -5,9 +5,7 @@ import os
 import requests
 from config import api_key
 import time
-#import pandas as pd
-#from pprint import pprint
-#api_key="55ef2f571a72890aed28dcf59e6ec29a"
+
 
 # Create an instance of Flask
 app = Flask(__name__)
@@ -19,10 +17,9 @@ mongo.db.city_weather_current.drop()
 mongo.db.city_weather_forecast.drop()
 mongo.db.city_weather_uv.drop()
 
-# use json to read a json file to get city name and country code that has population larger than 100,000
+# use json to read a json file and save everything to a var 
 with open("current.city.list.json",encoding="utf8") as jsonfile:
     json_data = json.load(jsonfile)
-    #print(f"The first response is {json.dumps(json_data[0], indent=2)}.")
 
 # sort the data by population in descending order
 sorted_data = sorted(json_data, key = lambda i: i['stat']['population'],reverse=True)
@@ -30,9 +27,9 @@ sorted_data = sorted(json_data, key = lambda i: i['stat']['population'],reverse=
 cities = []
 countrycodes = []
 populations = []
-number_of_cities = 600 
+number_of_cities = 600 # number of cities we study on
 
-
+#get city names and country codes
 for i in range(number_of_cities):
     try:
         cities.append(sorted_data[i]['name'])
@@ -41,14 +38,14 @@ for i in range(number_of_cities):
     except:
         pass
 
-
+# openweather api
 url = "http://api.openweathermap.org/data/2.5/"
 units = "metric"
 cityfound = 0
 citynotfound = 0
 
-for x in range(600):
-    
+for x in range(number_of_cities):
+    # get info of one of the cities
     city = cities[x]
     countrycode = countrycodes[x]
 

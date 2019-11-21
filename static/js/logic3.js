@@ -1,52 +1,49 @@
-//create data set on our data
+
 var queryURL = "http://127.0.0.1:5000/_current_data.json";
 var citylist = d3.select("#selDataset");
 var countrylist = d3.select("#selcountry");
-
 var wind = d3.select('#gaugechartwind');
 
-//var sampleid = "";
-//var sampleids = [];
-var citynames = [];
 
-// Add an empty option under country section
+// Add an empty option under country and city section
 countrylist.append("option");
 citylist.append("option");
-var countryAndcity = {};
 
+var countryAndcity = {};
+var citynames = [];
+
+// query the uploaded api
 d3.json(queryURL, function(data) {
-    
+
+    // Save the country names to a variable and sort it by alphabet 
     var allcountry = data.map(record => record.sys.country);
     var uniquecountry = [...new Set(allcountry)]; 
     uniquecountry = uniquecountry.sort();
+
+    //Add the countries to dropdown menu
     uniquecountry.forEach(country => countrylist.append("option").text(country));
     console.log(uniquecountry);
-
     
-
+    // iterate through all countries and find all cities in that country and save the country and city pairs as a dictionary
     uniquecountry.forEach(function(country){
-    var citiesOfcountry = data.filter(record => record.sys.country === country);
-    var cityNamesByCountry = citiesOfcountry.map(record => record.name);
-    var uniquecity = [...new Set(cityNamesByCountry)]; 
-    countryAndcity[country] = uniquecity;
+      var citiesOfcountry = data.filter(record => record.sys.country === country);
+      var cityNamesByCountry = citiesOfcountry.map(record => record.name);
+      var uniquecity = [...new Set(cityNamesByCountry)]; 
+      countryAndcity[country] = uniquecity;
     });
     console.log(countryAndcity);
   
+    // Save all the city names to a variable and add the them to dropdown menu
     data.forEach(city => {
-        //console.log(city.name);
         citynames.push(city.name);
     })
-
     citynames.forEach(city => citylist.append("option").text(city));
     
 });
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// draw the gauge chart of wind speed and degree
 
-//top10list.append('a').classed('dropdown-item', true).text('Shanghai')
-//top10list.append('a').classed('dropdown-item', true).text('Delhi')
-//function windchart(speed,degree){
-
-    //var winddegree = 120;
   dataSetWind = anychart.data.set([350]);
 
     //set the chart type
@@ -58,8 +55,6 @@ d3.json(queryURL, function(data) {
   gaugeWind.startAngle(0)
         .sweepAngle(360)
         .fill('lavender');
-  
-  
 
   var axisWind = gaugeWind.axis()
         .radius(95)
@@ -69,7 +64,6 @@ d3.json(queryURL, function(data) {
         .maximum(360)
         .ticks({interval: 30,fontColor:'royalblue'})
         .minorTicks({interval: 10,fontColor:'royalblue'});
-
 
   axisWind.minorTicks()
         .enabled(true);
@@ -100,9 +94,8 @@ d3.json(queryURL, function(data) {
     // draw chart
   gaugeWind.container('gaugechartwind').draw();
     
-//}
-
-//function tempchart(temp){
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// draw the gauge chart of temperature
 
   //var winddegree = 120;
 dataSetTemp = anychart.data.set([17]);
@@ -156,7 +149,9 @@ gaugeTemp.label()
 // draw chart
 gaugeTemp.container('gaugecharttemp').draw();
 
-// draw the chart to show humidity
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// draw the gauge chart of humidity
+
 dataSetHumid = anychart.data.set([82]);
 
 //set the chart type
@@ -193,7 +188,6 @@ gaugeHumid.needle(0)
       .middleWidth('2%');
 
   //gauge label
-
 gaugeHumid.label()
       .text(82+"%")
       .anchor('center') //set the position of the label
@@ -208,35 +202,36 @@ gaugeHumid.label()
   // draw chart
 gaugeHumid.container('gaugecharthumid').draw();
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// actions after a country and a city is selected by user
+
+// adjust the city selection menu
 countrylist.on("change", function() {
+      // save the country chosen as variable
       countryselected = d3.event.target.value;
-      //console.log(country);
-      // if (!(country) ) {
-      //   state = "";
-      // }
   
-      // based on the country chosen create the list of state to choose from
+      // clear the options under city menu and add an empty option
       citylist.html("");
       citylist.append("option")
+
+      // based on the country chosen create the list of cities to choose from
       countryAndcity[countryselected].forEach(city => citylist.append("option").text(city));
     });
 
 var citySelected = '';
 var weatherOfThisCity = {};
 
-// change the plot based on the select sample id
+// adjust the plot based on the select city
 citylist.on("change", function() {
-    //save the chosen id to var sampleid
-   
+    //save the chosen city to a var 
     citySelected = d3.event.target.value;
     console.log(citySelected);
 
+    // query the api to get the weather info of this city
     d3.json(queryURL, function(data) {
         weatherOfThisCity = data.filter(city => city.name === citySelected);
-        //gauge.dispose();
-        //dataSet = anychart.data.set([weatherOfThisCity[0].wind.deg]);
 
-    //link the data with the gauge
+        //update the parameter of 3 gauge charts
         gaugeWind.data([weatherOfThisCity[0].wind.deg]);
         gaugeWind.label()
         .text(weatherOfThisCity[0].wind.speed + "\n m/s")
@@ -248,16 +243,9 @@ citylist.on("change", function() {
         gaugeHumid.data([weatherOfThisCity[0].main.humidity]);
         gaugeHumid.label()
         .text(weatherOfThisCity[0].main.humidity +"%")
-        //windchart(weatherOfThisCity[0].wind.speed,weatherOfThisCity[0].wind.deg);
+      
         console.log(weatherOfThisCity);
     });
 
-    //console.log(weatherOfThisCity);
-    //gauge.data([80]);
     
 });
-
-//windchart(50,90);
-//tempchart(55);
-
-//fill() and stroke() or fontColor().
