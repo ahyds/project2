@@ -54,7 +54,8 @@ d3.json(queryURL_f, function(data) {
 
    // interate through 40 timepoints (every 3 hours in 5 days) to achieve temperature forecast
    for (var i = 0; i < 40; i++) {
-         var label = forecastForOne.list[i].dt_txt;
+         var label = forecastForOne.list[i].dt_txt.slice(5,16);
+        //  console.log(label.slice(5));
          var min = forecastForOne.list[i].main.temp_min;
          var max = forecastForOne.list[i].main.temp_max;
          var temp = [label , min , max];
@@ -76,7 +77,8 @@ function myFunction() {
       series_range.normal().stroke("#000080");
       series_range.hovered().stroke("#0066cc", 2);
       var xAxisLabels = rangecolumnchart.xAxis().labels();
-      xAxisLabels.rotation(90);
+      xAxisLabels.fontSize(16)
+    //   xAxisLabels.rotation(90);
       // set the container id
       rangecolumnchart.container("rangecolumn");
       // initiate drawing the chart
@@ -121,7 +123,7 @@ citylist.on("change", function() {
         forecast5day = [];
         for (var i = 0; i < 40; i++) {
 
-            var label = weatherOfThisCity[0].list[i].dt_txt;
+            var label = weatherOfThisCity[0].list[i].dt_txt.slice(5,16);
             var min = weatherOfThisCity[0].list[i].main.temp_min;
             var max = weatherOfThisCity[0].list[i].main.temp_max;
             var temp = [label , min , max];
